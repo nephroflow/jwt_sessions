@@ -155,7 +155,6 @@ module JWTSessions
   private
 
   def supported_algos
-    algos = JWT::JWA::ALGOS - [JWT::JWA::Unsupported]
-    algos.map { |algo| algo::SUPPORTED }.flatten + [NONE]
+    JWT::JWA.send(:algorithms).keys.map(&:upcase)
   end
 end
